@@ -15,19 +15,19 @@ public class Bike {
 
   private ArrayList<DateRange> cBookings = new ArrayList<DateRange>();
 
-  public Bike(Provider prov, BikeType bt, BigDecimal dr) {
+  public Bike(Provider prov, BikeType bt, BigDecimal dailyRental) {
     owner = prov;
     bikeT = bt;
-    dailyRental = dr;
+    this.dailyRental = dailyRental;
     manufactureDate = null;
     locationalStatus = 0;
   }
 
-  public Bike(Provider prov, BikeType bt, BigDecimal dr, LocalDate md) { //constructor for ExtensionModule (manufactureDate included)
+  public Bike(Provider prov, BikeType bt, BigDecimal dailyRental, LocalDate manufactureDate) { //constructor for ExtensionModule (manufactureDate included)
     owner = prov;
     bikeT = bt;
-    dailyRental = dr;
-    manufactureDate = md;
+    this.dailyRental = dailyRental;
+    this.manufactureDate = manufactureDate;
     locationalStatus = 0;
   }
 
@@ -68,7 +68,7 @@ public class Bike {
       return manufactureDate;
     }
 
-    public void updateLocationalStatus(int stage){
+    public void updateLocationalStatus(int stage){ //updates locational status of bike; only called in the booking class
     	locationalStatus = stage;
     }
 }
