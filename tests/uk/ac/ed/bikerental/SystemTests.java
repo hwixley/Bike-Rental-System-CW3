@@ -140,8 +140,9 @@ public class SystemTests {
         
         Main.partnerships.add(ps1);
         
-        bikes.put(hybrid, 1);
+        bikes.put(mountain, 1);
         bikes.put(road, 1);
+   
         
         Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
         ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1);

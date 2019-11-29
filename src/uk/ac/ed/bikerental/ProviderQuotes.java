@@ -32,10 +32,11 @@ public class ProviderQuotes{
     		  provRetString = providerReturn.toString();
     	  }
           String retString =  "Pickup Provider " + providerPickup.toString() + "DropOff Provider " + provRetString;
+          System.out.println(bikes.size());
           for (Bike currentBike: bikes) {
+        	  System.out.println("running code");
         	  String cBike = currentBike.toString();
-              retString.concat(cBike);
-              retString.concat(" ");             
+              retString += cBike + " ";            
           }
           return retString;
          
