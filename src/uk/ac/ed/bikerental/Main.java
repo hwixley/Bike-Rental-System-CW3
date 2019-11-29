@@ -43,7 +43,9 @@ public class Main {
       if (quote.addressCheck()){     //loop for quotes with same pickup and return address
           for(int i = 0; i < providers.size(); i++) {	//loops through all providers
               Provider provider = providers.get(i);
-              bikes.removeAll(bikes);
+              if (bikes != null) {
+                  bikes.removeAll(bikes);
+              }
 
               if((quote.getPickA()).isNearTo(provider.getAdd())) {	//check if customer's pickup address is in the same area as provider
                   bikes = validBikes(quote, provider);

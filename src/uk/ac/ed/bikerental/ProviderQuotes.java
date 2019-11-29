@@ -31,8 +31,14 @@ public class ProviderQuotes{
     	  if (providerReturn != null) {
     		  provRetString = providerReturn.toString();
     	  }
-          return "Pickup Provider " + providerPickup.toString() + "DropOff Provider " + provRetString;
-
+          String retString =  "Pickup Provider " + providerPickup.toString() + "DropOff Provider " + provRetString;
+          for (Bike currentBike: bikes) {
+        	  String cBike = currentBike.toString();
+              retString.concat(cBike);
+              retString.concat(" ");             
+          }
+          return retString;
+         
       }
 
       public Quote getQuote() {
