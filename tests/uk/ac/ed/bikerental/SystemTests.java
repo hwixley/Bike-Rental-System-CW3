@@ -97,10 +97,10 @@ public class SystemTests {
    // void setUp() throws Exception {
         // Setup mock delivery service before each tests
    //     DeliveryServiceFactory.setupMockDeliveryService();
-        
+
         // Put your test setup here
    //}
-    
+
     // TODO: Write system tests covering the three main use cases
 
     @Test
@@ -108,13 +108,13 @@ public class SystemTests {
     	Main.providers.add(prov1);
         Main.providers.add(prov2);
         Main.providers.add(prov3);
-        
+
         Main.customers.add(c1);
-        
+
         Main.bikeTypes.add(hybrid);
         Main.bikeTypes.add(road);
         Main.bikeTypes.add(mountain);
-        
+
         prov1.addBike(bk1p1);
         prov1.addBike(bk2p1);
         prov1.addBike(bk3p1);
@@ -123,12 +123,12 @@ public class SystemTests {
         prov1.addBike(bk6p1);
         prov1.addBike(bk7p1);
         prov1.addBike(bk8p1);
-        
+
         prov2.addBike(bk1p2);
         prov2.addBike(bk2p2);
         prov2.addBike(bk3p2);
         prov2.addBike(bk4p2);
-        
+
         prov3.addBike(bk1p3);
         prov3.addBike(bk2p3);
         prov3.addBike(bk3p3);
@@ -137,12 +137,12 @@ public class SystemTests {
         prov3.addBike(bk6p3);
         prov3.addBike(bk7p3);
         prov3.addBike(bk8p3);
-        
+
         Main.partnerships.add(ps1);
-        
+
         bikes.put(mountain, 1);
         bikes.put(road, 1);
-   
+
         //getQuotes function output
         Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
         ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1);
@@ -150,31 +150,35 @@ public class SystemTests {
         for (ProviderQuotes retQs: getQs) { //getQuotes printing
           // System.out.printf("Quote 1 - %s\n", retQs.toString());
         }
-        
-        //testing getQuotes function output for same pickup and return address, with 1 road and 1 mountain bike 
+
+        //testing getQuotes function output for same pickup and return address, with 1 road and 1 mountain bike
         ArrayList<Bike> bikes1 = new ArrayList<Bike>();
         bikes1.add(bk7p1);	//mountain bike
         bikes1.add(bk5p1); //road bike
         ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1); //Soul cycles provider quote
-        
+
         ArrayList<Bike> bikes2 = new ArrayList<Bike>();
         bikes2.add(bk5p3);	//mountain bike
         bikes2.add(bk1p3); //road bike
         ProviderQuotes pq2 = new ProviderQuotes(quote1, prov3, null, bikes2); //Soul cycles provider quote
-        
+
         ArrayList<ProviderQuotes> getQuotesResult1 = new ArrayList<ProviderQuotes>();
         getQuotesResult1.add(pq1);
         getQuotesResult1.add(pq2);
-        
+
+        for (ProviderQuotes retQs: getQuotesResult1) { //getQuotesResult1 printing
+            System.out.printf("Quote 1 - %s\n", retQs.toString());
+        }
+
         //assertion on getQuotes result
-        
+
         //assert(getQs.equals(getQuotesResult1));
-        
-        
+
+
         //getQuotes function tested for different pickup and return locations
        
         Quote quote2 = new Quote(c1, bikes, d1, loc2, loc3);
-        
+
         ArrayList<ProviderQuotes> getQs2 = mainSystem.getQuotes(quote2);
 
         for (ProviderQuotes retQs: getQs2) { //getQuotes printing
