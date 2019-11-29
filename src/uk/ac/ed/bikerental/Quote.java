@@ -89,45 +89,47 @@ class Booking extends Quote{
     orderID = Main.bookings.size();
   }
 
-  private String updateLocationalStatus(){ //updates the locational status of bikes in a given booking
+  public String updateLocationalStatus(){ //updates the locational status of bikes in a given booking
 	  String stage = "";
+	  int bikeStatus = 0;
 	  if (locStatus == 4) return "Booking process is over, unable to update locational status of the bikes any further.";
 	  else {
 		  if (locStatus == 0) {
 			  if (pickupMethod) {
 				  locStatus = 2;
+				  bikeStatus = locStatus;
 				  stage = "with customer";
 			  } else {
 				  locStatus = 1;
+				  bikeStatus = locStatus;
 				  stage = "in transit to customer (with delivery driver)";
 			  }
 		  } else if (locStatus == 1) {
 			  locStatus = 2;
+			  bikeStatus = locStatus;
 			  stage = "with customer";
 		  } else if (returnProv == null) {
 			  if (locStatus == 2) {
 				  locStatus = 5;
+				  bikeStatus = locStatus;
 				  depStatus = 2;
 				  stage = "returned to original provider";
 			  }
 		  } else if (locStatus == 2) {
 			  locStatus = 3;
 			  depStatus = 2;
+			  bikeStatus = locStatus;
 			  stage = "returned to partner";
 		  } else if (locStatus == 3) {
 			  locStatus = 4;
+			  bikeStatus = locStatus;
 			  stage = "in transit to original provider (with delivery driver)";
 		  } else if (locStatus == 4) {
 			  locStatus = 5;
+			  bikeStatus = 0;	//if the end of the booking is reached the locational status of each bike is set to "with provider"
 			  stage = "returned to original provider";
 		  }
 
-		//if the end of the booking is reached the locational status of each bike is set to "with provider"
-		  int bikeStatus = 0;
-
-		  if (locStatus == 5) {
-			  bikeStatus = 0;
-		  } else bikeStatus = locStatus;
 
 		  for (int i = 0; i < bikes.size(); i++) {
 			  bikes.get(i).updateLocationalStatus(bikeStatus);
@@ -138,6 +140,10 @@ class Booking extends Quote{
 
 	  }
 
+  }
+  
+  public int getLocationalStatus() {
+	  return locStatus;
   }
 
   //calculates the total deposit of all bikes in the booking

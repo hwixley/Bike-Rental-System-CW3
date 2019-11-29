@@ -104,7 +104,7 @@ public class SystemTests {
     // TODO: Write system tests covering the three main use cases
 
     @Test
-    void myFirstTest() {
+    void getQuotesTest1() { //same pickup and return area
 
         prov1.addBike(bk1p1);
         prov1.addBike(bk2p1);
@@ -132,15 +132,15 @@ public class SystemTests {
         bikes.put(mountain, 1);
         bikes.put(road, 1);
 
-        //getQuotes function output
+        //getQuotes function output for same pickup and return area
         Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
         ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1, false);
 
         for (ProviderQuotes retQs: getQs) { //getQuotes printing
-         System.out.printf("Quote 1 - %s\n", retQs.toString());
+        	System.out.printf("Quote 1 - %s\n", retQs.toString());
         }
 
-        //testing getQuotes function output for same pickup and return address, with 1 road and 1 mountain bike
+        //Expected getQuotes function output for same pickup and return area, with 1 road and 1 mountain bike
         ArrayList<Bike> bikes1 = new ArrayList<Bike>();
         bikes1.add(bk7p1);	//mountain bike
         bikes1.add(bk5p1); //road bike
@@ -155,24 +155,155 @@ public class SystemTests {
         getQuotesResult1.add(pq1);
         getQuotesResult1.add(pq2);
 
-        for (ProviderQuotes retQs: getQuotesResult1) { //getQuotesResult1 printing
-            //System.out.printf("Quote 1 - %s\n", retQs.toString());
+                
+        //ASSERTION on getQuotes result for same pickup and return area
+        assertEquals(getQuotesResult1.size(), getQs.size());
+        
+        for (int i = 0; i < getQs.size(); i++) {
+     
+        	assertEquals(getQs.get(i).getProvPickup(), getQuotesResult1.get(i).getProvPickup());
+        	assertEquals(getQs.get(i).getProvReturn(), getQuotesResult1.get(i).getProvReturn());
+        	assertEquals(getQs.get(i).getQuote(), getQuotesResult1.get(i).getQuote());
+        	assertEquals(getQs.get(i).getBikes().size(), getQuotesResult1.get(i).getBikes().size());
+        	
+        	for (int a = 0; a < getQs.get(i).getBikes().size(); a++) {
+        		assertEquals(getQs.get(i).getBikes().get(a).getBikeType(),getQuotesResult1.get(i).getBikes().get(a).getBikeType());
+        	}
+        	
         }
+    }
+    
+    @Test
+    void getQuotesTest2() {
 
-        //assertion on getQuotes result
 
-        //assert(getQs.equals(getQuotesResult1));
-
-
-        //getQuotes function tested for different pickup and return locations
-       
-        Quote quote2 = new Quote(c1, bikes, d1, loc2, loc3);
+        //getQuotes function output for different pickup and return locations, with 1 road and 1 mountain bike
+        Quote quote2 = new Quote(c1, bikes, d1, loc2, loc3); 
 
         ArrayList<ProviderQuotes> getQs2 = mainSystem.getQuotes(quote2, false);
 
         for (ProviderQuotes retQs: getQs2) { //getQuotes printing
            System.out.printf("Quote 2 - %s\n", retQs.toString());
         }
- 
+        
+        //Expected getQuotes function output for same pickup and return area, with 1 road and 1 mountain bike
+        ArrayList<Bike> bikes3 = new ArrayList<Bike>();
+        bikes3.add(bk4p2);	//mountain bike
+        bikes3.add(bk3p2); //road bike
+        ProviderQuotes pq3 = new ProviderQuotes(quote2, prov2, prov1, bikes3); //Soul cycles provider quote
+
+        ArrayList<ProviderQuotes> getQuotesResult2 = new ArrayList<ProviderQuotes>();
+        getQuotesResult2.add(pq3);
+        
+      //ASSERTION on getQuotes result for different pickup and return area
+        assertEquals(getQuotesResult2.size(), getQs2.size());
+        
+        for (int i = 0; i < getQs2.size(); i++) {
+     
+        	assertEquals(getQs2.get(i).getProvPickup(), getQuotesResult2.get(i).getProvPickup());
+        	assertEquals(getQs2.get(i).getProvReturn(), getQuotesResult2.get(i).getProvReturn());
+        	assertEquals(getQs2.get(i).getQuote(), getQuotesResult2.get(i).getQuote());
+        	assertEquals(getQs2.get(i).getBikes().size(), getQuotesResult2.get(i).getBikes().size());
+        	
+        	for (int a = 0; a < getQs2.get(i).getBikes().size(); a++) {
+        		assertEquals(getQs2.get(i).getBikes().get(a).getBikeType(),getQuotesResult2.get(i).getBikes().get(a).getBikeType());
+        	}
+        	
+        }
+    }
+    
+    @Test
+    void getQuotesTest3() { //tests that getQuotes only retrieves bikes available for a given date range
+    	
+    	//Books bikes bk7p1 and bk5p1 (the only road and mountain bikes for prov2) for daterange d1 (23.11.2019 - 26.11.2019)
+    	ArrayList<Bike> bikes1 = new ArrayList<Bike>();
+   	 	bikes1.add(bk3p2);	//mountain bike
+        bikes1.add(bk4p2); //road bike
+        
+        Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
+    	ProviderQuotes pq1 = new ProviderQuotes(quote1, prov2, null, bikes1);
+    	
+    	Booking bookingOut = mainSystem.bookQuote(pq1,true); 
+    	
+    	
+    	//getQuotes function output, should not return any quotes from provider 2
+        LocalDate start = LocalDate.of(2019, 11, 25);
+        LocalDate end = LocalDate.of(2019, 11, 29);
+        DateRange newDR = new DateRange(start, end);
+        
+        Quote quote2 = new Quote(c1, bikes, newDR, loc1, loc1);
+        
+        ArrayList<ProviderQuotes> getQuotesResult3 = mainSystem.getQuotes(quote2, false);
+        
+        //testing expected and given values
+        for (int i = 0; i < getQuotesResult3.size(); i++) {
+        	if (getQuotesResult3.get(i).getProvPickup() == prov2) {
+        		assert(false);
+        	}
+        }
+    }
+    
+    @Test
+    void bookQuotesTest1() {
+    	
+    	
+    	//Expected book quote function output
+    	ArrayList<Bike> bikes1 = new ArrayList<Bike>();
+    	 bikes1.add(bk7p1);	//mountain bike
+         bikes1.add(bk5p1); //road bike
+         
+    	Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
+    	Booking booking = new Booking(quote1, prov1, null, bikes1,true);
+    	
+    	
+    	//bookQuote function output
+    	ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1);
+    	
+    	Booking bookingOut = mainSystem.bookQuote(pq1,true);
+    	
+    	//testing equality between expected and given bookQuote bookings
+        assertEquals(booking.calcDeposit(),bookingOut.calcDeposit());
+        	
+    	
+    }
+    
+    
+    @Test
+    void updateLocationalStatusTest1() { //for bookings where bikes are collected
+    	//variable initialisations
+    	ArrayList<Bike> bikes1 = new ArrayList<Bike>();
+   	 	bikes1.add(bk7p1);	//mountain bike
+        bikes1.add(bk5p1); //road bike
+        
+        Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
+    	ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1);
+    	
+    	Booking booking = mainSystem.bookQuote(pq1,true); 
+    	
+    	//test function output values
+    	assertEquals(booking.getLocationalStatus(), 0);
+    	String s =  booking.updateLocationalStatus();
+    	
+    	for (int i = 2; i < 5; i++) {
+    		assertEquals(booking.getLocationalStatus(),i);
+    		s = booking.updateLocationalStatus();
+    	}
+    	assertEquals(booking.getLocationalStatus(), 5);
+    }
+    
+    @Test
+    void updateLocationalStatusTest2() { //for bookings where bikes are delivered
+    	//variable initialisations
+    	ArrayList<Bike> bikes1 = new ArrayList<Bike>();
+   	 	bikes1.add(bk7p1);	//mountain bike
+        bikes1.add(bk5p1); //road bike
+        
+        Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
+    	ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1);
+    	
+    	Booking bookingOut = mainSystem.bookQuote(pq1,true);
+    	
+    	//test function output values
     }
 }
+
