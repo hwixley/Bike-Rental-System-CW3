@@ -38,19 +38,17 @@ public class Main {
 
   public ArrayList<ProviderQuotes> getQuotes(Quote quote){
       ArrayList<ProviderQuotes> pQuotes = new ArrayList<ProviderQuotes>();
-      ArrayList<Bike> bikes = new ArrayList<Bike>();
+      
 
       if (quote.addressCheck()){     //loop for quotes with same pickup and return address
           for(int i = 0; i < providers.size(); i++) {	//loops through all providers
               Provider provider = providers.get(i);
-              if (bikes != null) {
-                  bikes.removeAll(bikes);
-              }
+              ArrayList<Bike> bikes = new ArrayList<Bike>();
 
               if((quote.getPickA()).isNearTo(provider.getAdd())) {	//check if customer's pickup address is in the same area as provider
                   bikes = validBikes(quote, provider);
               }
-              if (bikes != null) { //checks if the provider will have available bikes given the criteria
+              if (bikes.size() != 0) { //checks if the provider will have available bikes given the criteria
                   ProviderQuotes pq  = new ProviderQuotes(quote,provider,null,bikes); //initializes provider quotes with second provider as NULL
                   pQuotes.add(pq);
               }
@@ -59,7 +57,7 @@ public class Main {
           for(int i = 0; i < partnerships.size(); i++) { //loops through all partnerships
               Provider prov1 = partnerships.get(i).getProv1();
               Provider prov2 = partnerships.get(i).getProv2();
-              bikes.removeAll(bikes);
+              ArrayList<Bike> bikes = new ArrayList<Bike>();
 
               if ((quote.getPickA().isNearTo(prov1.getAdd()))
             		  & (quote.getRetA().isNearTo(prov2.getAdd()))) { //Checks if the provider addresses match pickup and return locations
@@ -73,7 +71,7 @@ public class Main {
               else if ((quote.getPickA().isNearTo(prov2.getAdd()))
             		  & (quote.getRetA().isNearTo(prov1.getAdd()))) { //Checks if the provider addresses match pickup and return locations
                   bikes = validBikes(quote, prov2);
-                  if (bikes != null) {	//checks if the provider will have available bikes given the criteria
+                  if (bikes.size() != 0) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov2,prov1,bikes);
                       pQuotes.add(pq);
                   }
