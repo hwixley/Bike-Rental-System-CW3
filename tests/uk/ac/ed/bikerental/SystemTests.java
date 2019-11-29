@@ -158,8 +158,8 @@ public class SystemTests {
         ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1); //Soul cycles provider quote
         
         ArrayList<Bike> bikes2 = new ArrayList<Bike>();
-        bikes1.add(bk5p3);	//mountain bike
-        bikes1.add(bk1p3); //road bike
+        bikes2.add(bk5p3);	//mountain bike
+        bikes2.add(bk1p3); //road bike
         ProviderQuotes pq2 = new ProviderQuotes(quote1, prov2, null, bikes2); //Soul cycles provider quote
         
         ArrayList<ProviderQuotes> getQuotesResult1 = new ArrayList<ProviderQuotes>();
