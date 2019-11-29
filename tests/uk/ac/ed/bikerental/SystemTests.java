@@ -65,7 +65,7 @@ public class SystemTests {
     Bike bk1p2 = new Bike(prov2, hybrid, rentP2);
     Bike bk2p2 = new Bike(prov2, hybrid, rentP2);
     Bike bk3p2 = new Bike(prov2, road, rentP3);
-    Bike bk4p2 = new Bike(prov2, road, rentP3);
+    Bike bk4p2 = new Bike(prov2, mountain, rentP3);
 
     //Initialising Bikes For Provider 3
     Bike bk1p3 = new Bike(prov3, road, rentP1);
