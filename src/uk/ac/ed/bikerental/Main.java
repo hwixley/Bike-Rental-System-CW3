@@ -13,7 +13,7 @@ public class Main {
   public static ArrayList<BikeType> bikeTypes = new ArrayList<BikeType>();
   public static ArrayList<Booking> bookings = new ArrayList<Booking>();
 
-  private Boolean getQuotesRecursed = false;
+  private static final Boolean getQuotesRecursed = false;
 
 
   //method loops through bikes from a given provider and return a list of bikes that fit the quote criteria
