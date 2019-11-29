@@ -143,12 +143,30 @@ public class SystemTests {
         bikes.put(mountain, 1);
         bikes.put(road, 1);
    
-        
+        //getQuotes function output
         Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
         ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1);
 
-        for (ProviderQuotes retQs: getQs) {
+        for (ProviderQuotes retQs: getQs) { //getQuotes printing
            System.out.printf("Quote 1 - %s\n", retQs.toString());
         }
+        
+        //testing getQuotes function output for same pickup and return address, with 1 road and 1 mountain bike 
+        ArrayList<Bike> bikes1 = new ArrayList<Bike>();
+        bikes1.add(bk7p1);	//mountain bike
+        bikes1.add(bk5p1); //road bike
+        ProviderQuotes pq1 = new ProviderQuotes(quote1, prov1, null, bikes1); //Soul cycles provider quote
+        
+        ArrayList<Bike> bikes2 = new ArrayList<Bike>();
+        bikes1.add(bk5p3);	//mountain bike
+        bikes1.add(bk1p3); //road bike
+        ProviderQuotes pq2 = new ProviderQuotes(quote1, prov2, null, bikes2); //Soul cycles provider quote
+        
+        ArrayList<ProviderQuotes> getQuotesResult1 = new ArrayList<ProviderQuotes>();
+        getQuotesResult1.add(pq1);
+        getQuotesResult1.add(pq2);
+        
+        //assertion on getQuotes result
+        assert(getQs.equals(getQuotesResult1));
     }
 }
