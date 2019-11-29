@@ -160,13 +160,17 @@ public class SystemTests {
         ArrayList<Bike> bikes2 = new ArrayList<Bike>();
         bikes2.add(bk5p3);	//mountain bike
         bikes2.add(bk1p3); //road bike
-        ProviderQuotes pq2 = new ProviderQuotes(quote1, prov2, null, bikes2); //Soul cycles provider quote
+        ProviderQuotes pq2 = new ProviderQuotes(quote1, prov3, null, bikes2); //Soul cycles provider quote
         
         ArrayList<ProviderQuotes> getQuotesResult1 = new ArrayList<ProviderQuotes>();
         getQuotesResult1.add(pq1);
         getQuotesResult1.add(pq2);
         
+        for (ProviderQuotes retQs: getQuotesResult1) { //getQuotesResult1 printing
+            System.out.printf("Quote 1 - %s\n", retQs.toString());
+        }
+        
         //assertion on getQuotes result
-        assert(getQs.equals(getQuotesResult1));
+        assert(getQs==getQuotesResult1);
     }
 }
