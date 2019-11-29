@@ -8,6 +8,9 @@ public class Partnership{
   public Partnership(Provider p1, Provider p2){
     prov1 = p1;
     prov2 = p2;
+    Main.partnerships.add(this);
+    p1.addPartner(this);
+    p2.addPartner(this);
   }
 
   public Provider getProv1(){

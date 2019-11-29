@@ -105,15 +105,6 @@ public class SystemTests {
 
     @Test
     void myFirstTest() {
-    	Main.providers.add(prov1);
-        Main.providers.add(prov2);
-        Main.providers.add(prov3);
-
-        Main.customers.add(c1);
-
-        Main.bikeTypes.add(hybrid);
-        Main.bikeTypes.add(road);
-        Main.bikeTypes.add(mountain);
 
         prov1.addBike(bk1p1);
         prov1.addBike(bk2p1);
@@ -137,9 +128,7 @@ public class SystemTests {
         prov3.addBike(bk6p3);
         prov3.addBike(bk7p3);
         prov3.addBike(bk8p3);
-
-        Main.partnerships.add(ps1);
-
+        
         bikes.put(mountain, 1);
         bikes.put(road, 1);
 
@@ -184,5 +173,6 @@ public class SystemTests {
         for (ProviderQuotes retQs: getQs2) { //getQuotes printing
            System.out.printf("Quote 2 - %s\n", retQs.toString());
         }
+ 
     }
 }

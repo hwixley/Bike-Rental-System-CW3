@@ -12,6 +12,7 @@ public class BikeType {
   public BikeType(String bikeT, BigDecimal replVal) {
       this.bikeT = bikeT;
       this.replVal = replVal;
+      Main.bikeTypes.add(this);
   }
 
   public BikeType(String bikeT, BigDecimal replVal, BigDecimal deprRate) {

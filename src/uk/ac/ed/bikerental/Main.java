@@ -73,6 +73,7 @@ public class Main {
                   if ((bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov2,prov1,bikes);
                       pQuotes.add(pq);
+                      System.out.println("added/n");
                   }
               }
 

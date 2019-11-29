@@ -10,6 +10,7 @@ public class Customer{
     fullName = name;
     address = addr;
     phoneNo = phone;
+    Main.customers.add(this);
   }
 
   public String toString(){
