@@ -29,15 +29,14 @@ public class ProviderQuotes{
       public String toString() {
     	  String provRetString = "";
     	  if (providerReturn != null) {
-    		  provRetString = providerReturn.toString();
+    		  provRetString = "DropOff Provider " + providerReturn.toString();
     	  }
-          String retString =  "Pickup Provider " + providerPickup.toString() + "DropOff Provider " + provRetString;
-          System.out.println(bikes.size());
+          String retString =  "Pickup Provider " + providerPickup.toString() +  provRetString;
           for (Bike currentBike: bikes) {
-        	  System.out.println("running code");
         	  String cBike = currentBike.toString();
-              retString += cBike + " ";            
+              retString += cBike + ", ";            
           }
+          retString += "\n";
           return retString;
          
       }
