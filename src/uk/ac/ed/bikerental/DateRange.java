@@ -1,22 +1,23 @@
 package uk.ac.ed.bikerental;
 
 import java.time.LocalDate;
+
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
 public class DateRange {
     private LocalDate start, end;
-    
+
     public DateRange(LocalDate start, LocalDate end) {
         this.start = start;
         this.end = end;
     }
-    
+
     public LocalDate getStart() {
         return this.start;
     }
-    
+
     public LocalDate getEnd() {
         return this.end;
     }
@@ -29,10 +30,25 @@ public class DateRange {
         return ChronoUnit.DAYS.between(this.getStart(), this.getEnd());
     }
 
+    public String toString() {
+      return "Start: " + start.toString() + "\nEnd: " + end.toString();
+    }
+
     public Boolean overlaps(DateRange other) {
-        // TODO: implement date range intersection checking
-        assert false;
-        return null;
+
+        LocalDate compareStart = other.getStart();
+        LocalDate compareEnd = other.getEnd();
+
+        LocalDate queryStart = start;
+        LocalDate queryEnd = end;
+
+        if (queryStart.isAfter(compareEnd)){
+          return true;
+        }else if(queryEnd.isBefore(compareStart)){
+          return true;
+        }else{
+          return false;
+        }
     }
 
     @Override
@@ -53,6 +69,6 @@ public class DateRange {
         DateRange other = (DateRange) obj;
         return Objects.equals(end, other.end) && Objects.equals(start, other.start);
     }
-    
+
     // You can add your own methods here
 }
