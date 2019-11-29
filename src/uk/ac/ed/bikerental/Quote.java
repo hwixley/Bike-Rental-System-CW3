@@ -85,6 +85,7 @@ class Booking extends Quote{
     deposit = calcDeposit();
     depStatus = 1;
     locStatus = 0;
+    Main.bookings.add(this);
     orderID = Main.bookings.size();
   }
 

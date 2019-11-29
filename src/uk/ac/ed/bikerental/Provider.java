@@ -20,6 +20,7 @@ public class Provider{
     phoneNo = phone;
     openingHours = hours;
     depositRate = depR;
+    Main.providers.add(this);
   }
 
   public Provider(String nom, Location addr, String phone, String hours, BigDecimal depR, Boolean valDeprType) {
@@ -71,6 +72,10 @@ public class Provider{
 
   public Location getAdd(){
     return address;
+  }
+  
+  public void addPartner(Partnership partnership) {
+	  partners.add(partnership);
   }
 
   public Boolean getValType() {
