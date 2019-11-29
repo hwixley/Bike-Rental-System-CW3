@@ -12,7 +12,6 @@ class TestLocation {
     Location loc5 = new Location("YK2 6H3", "13 Cockburn Street, Edinburgh");
     @BeforeEach
     void setUp() throws Exception {
-        System.out.println("shfbawf");
     	assert(loc1.isNearTo(loc3));
     	assert(loc1.isNearTo(loc3));
     	assert(loc2.isNearTo(loc4));
