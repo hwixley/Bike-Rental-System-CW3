@@ -48,7 +48,7 @@ public class Main {
               if((quote.getPickA()).isNearTo(provider.getAdd())) {	//check if customer's pickup address is in the same area as provider
                   bikes = validBikes(quote, provider);
               }
-              if (bikes.size() != 0) { //checks if the provider will have available bikes given the criteria
+              if ((bikes != null) && (bikes.size() > 0)) { //checks if the provider will have available bikes given the criteria
                   ProviderQuotes pq  = new ProviderQuotes(quote,provider,null,bikes); //initializes provider quotes with second provider as NULL
                   pQuotes.add(pq);
               }
@@ -63,15 +63,16 @@ public class Main {
             		  && (quote.getRetA().isNearTo(prov2.getAdd()))) { //Checks if the provider addresses match pickup and return locations
 
                   bikes = validBikes(quote, prov1);
-                  if (bikes.size() != 0) {	//checks if the provider will have available bikes given the criteria
+                  if ((bikes != null) &&(bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov1,prov2,bikes);
                       pQuotes.add(pq);
                   }
               }
               else if ((quote.getPickA().isNearTo(prov2.getAdd()))
             		  && (quote.getRetA().isNearTo(prov1.getAdd()))) { //Checks if the provider addresses match pickup and return locations
-                  bikes = validBikes(quote, prov2);
-                  if (bikes.size() != 0) {	//checks if the provider will have available bikes given the criteria
+                  
+            	  bikes = validBikes(quote, prov2);
+                  if ((bikes != null) && (bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov2,prov1,bikes);
                       pQuotes.add(pq);
                   }
@@ -82,7 +83,6 @@ public class Main {
       if ((pQuotes.size() == 0) && (getQuotesRecursed == false)){ //checks if no provider quotes were found and if the function has not already recursively been called
         getQuotesRecursed = true;
         System.out.println("Sorry there were no available quotes for your given search criteria.\n");
-
 
         LocalDate startDate = quote.getDateRange().getStart();
         LocalDate endDate = quote.getDateRange().getEnd();
