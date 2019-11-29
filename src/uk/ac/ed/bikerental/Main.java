@@ -35,7 +35,7 @@ public class Main {
     if (valid) return bikes;
     else return null;
   }
-
+ 
   public ArrayList<ProviderQuotes> getQuotes(Quote quote){
       ArrayList<ProviderQuotes> pQuotes = new ArrayList<ProviderQuotes>();
       

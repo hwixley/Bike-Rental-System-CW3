@@ -33,7 +33,8 @@ public class DateRange {
     public String toString() {
       return "Start: " + start.toString() + "\nEnd: " + end.toString();
     }
-
+    
+    //method compares whether 2 bookings overlap, this method will be inside a loop
     public Boolean overlaps(DateRange other) {
 
         LocalDate compareStart = other.getStart();
