@@ -33,4 +33,8 @@ public class BikeType {
     public BigDecimal getRepValue() {
     	return replVal;
     }
+    
+    public String toString() {
+    	return bikeT;
+    }
 }

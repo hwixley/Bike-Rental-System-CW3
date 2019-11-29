@@ -50,7 +50,7 @@ public class Bike {
     }
 
     public String toString(){
-        return null;
+        return bikeT.toString();
     }
 
     public Provider getProvider(){
