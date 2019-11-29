@@ -125,59 +125,7 @@ public class Main {
   }
 
   public static void main(String[] args) {
-/*
-     Location loc1 = new Location("EH3 9JD", "1 Glen Street, Tollcross, Edinburgh");
-     Location loc2 = new Location("YW1 9AD", "5 Yendo Avenue, Inverness");
-     Location loc3 = new Location("EH2 6H3", "6 Tustle Close, Edinburgh");
-     Location loc4 = new Location("YW2 6H3", "10 Sesame Street, Inverness");
 
-     BigDecimal value1 = new BigDecimal(500.0);
-     BigDecimal value2 = new BigDecimal(400.0);
-     BigDecimal value3 = new BigDecimal(700.0);
-
-     BigDecimal depositRate1 = new BigDecimal(0.2);
-     BigDecimal depositRate2 = new BigDecimal(0.1);
-
-     Provider p1 = new Provider("Soul Cycles", loc3, "3298472394", "8:00 - 20:00", depositRate1);
-     Provider p2 = new Provider("Bill's Bikes", loc2, "12345678", "8:00 - 20:00", depositRate2);
-     Provider p3 = new Provider("Andy's Bikes", loc1, "3298472394", "8:00 - 20:00", depositRate1);
-     Provider p4 = new Provider("Harry's Bikes", loc4, "5678678999", "8:00 - 20:00", depositRate2);
-
-     Customer c1 = new Customer("John Smith",loc1, "074126787");
-
-     BikeType bt1 = new BikeType("Hybrid", value1);
-     BikeType bt2 = new BikeType("Road", value2);
-     BikeType bt3 = new BikeType("Mountain", value3);
-
-     Partnership ps1 = new Partnership(p1, p2);
-     Partnership ps2 = new Partnership(p2, p4);
-
-
-     HashMap<BikeType,Integer> bikes = new HashMap<BikeType,Integer>();
-     bikes.put(bt1, 3);
-     bikes.put(bt2, 1);
-
-
-     LocalDate startDate = LocalDate.of(2019, 11, 23);
-     LocalDate endDate = LocalDate.of(2019, 11, 26);
-     DateRange d1 = new DateRange(startDate, endDate);
-
-     Main.providers.add(p1);
-     Main.providers.add(p2);
-     Main.partnerships.add(ps1);
-     Main.customers.add(c1);
-     Main.bikeTypes.add(bt1);
-     Main.bikeTypes.add(bt2);
-
-
-
-     Quote quote1 = new Quote(c1, bikes, d1, loc1, loc2);
-     //Main var = new Main();
-     ArrayList<ProviderQuotes> getQs = getQuotes(quote1);
-     System.out.println("getQuotes:\n");
-     for (int i = 0; i < getQs.size(); i++) {
-       System.out.println(getQs.get(i).getQuote());
-     }*/
 
   }
 }

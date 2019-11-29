@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Bike {
 
- // private Provider owner;
+  private Provider owner;
   private BikeType bikeT;
   private BigDecimal dailyRental;
   private LocalDate manufactureDate;
@@ -15,20 +15,20 @@ public class Bike {
 
   private ArrayList<DateRange> cBookings = new ArrayList<DateRange>();
 
-  public Bike(BikeType bt, BigDecimal dr, int locStatus) {
-    //owner = prov;
+  public Bike(Provider prov, BikeType bt, BigDecimal dr) {
+    owner = prov;
     bikeT = bt;
     dailyRental = dr;
     manufactureDate = null;
-    locationalStatus = locStatus;
+    locationalStatus = 0;
   }
 
-  public Bike(BikeType bt, BigDecimal dr, LocalDate md, int locStatus) { //constructor for ExtensionModule (manufactureDate included)
-    //owner = prov;
+  public Bike(Provider prov, BikeType bt, BigDecimal dr, LocalDate md) { //constructor for ExtensionModule (manufactureDate included)
+    owner = prov;
     bikeT = bt;
     dailyRental = dr;
     manufactureDate = md;
-    locationalStatus = locStatus;
+    locationalStatus = 0;
   }
 
     public BikeType getType() {
@@ -53,9 +53,10 @@ public class Bike {
         return null;
     }
 
-    //public Provider getProvider(){
-    //  return owner;
-    //}
+    public Provider getProvider(){
+      return owner;
+    }
+    
     public BikeType getBikeType(){
       return bikeT;
     }
