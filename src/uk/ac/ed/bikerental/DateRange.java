@@ -43,11 +43,11 @@ public class DateRange {
         LocalDate queryEnd = end;
 
         if (queryStart.isAfter(compareEnd)){
-          return true;
-        }else if(queryEnd.isBefore(compareStart)){
-          return true;
-        }else{
           return false;
+        }else if(queryEnd.isBefore(compareStart)){
+          return false;
+        }else{
+          return true;
         }
     }
 
