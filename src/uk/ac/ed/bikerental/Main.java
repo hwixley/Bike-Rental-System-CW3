@@ -60,16 +60,16 @@ public class Main {
               ArrayList<Bike> bikes = new ArrayList<Bike>();
 
               if ((quote.getPickA().isNearTo(prov1.getAdd()))
-            		  & (quote.getRetA().isNearTo(prov2.getAdd()))) { //Checks if the provider addresses match pickup and return locations
+            		  && (quote.getRetA().isNearTo(prov2.getAdd()))) { //Checks if the provider addresses match pickup and return locations
 
                   bikes = validBikes(quote, prov1);
-                  if (bikes != null) {	//checks if the provider will have available bikes given the criteria
+                  if (bikes.size() != 0) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov1,prov2,bikes);
                       pQuotes.add(pq);
                   }
               }
               else if ((quote.getPickA().isNearTo(prov2.getAdd()))
-            		  & (quote.getRetA().isNearTo(prov1.getAdd()))) { //Checks if the provider addresses match pickup and return locations
+            		  && (quote.getRetA().isNearTo(prov1.getAdd()))) { //Checks if the provider addresses match pickup and return locations
                   bikes = validBikes(quote, prov2);
                   if (bikes.size() != 0) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov2,prov1,bikes);
