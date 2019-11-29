@@ -13,8 +13,6 @@ public class Main {
   public static ArrayList<BikeType> bikeTypes = new ArrayList<BikeType>();
   public static ArrayList<Booking> bookings = new ArrayList<Booking>();
 
-  private static final Boolean getQuotesRecursed = false;
-
 
   //method loops through bikes from a given provider and return a list of bikes that fit the quote criteria
   public ArrayList<Bike> validBikes(Quote quote, Provider provider) {
@@ -36,7 +34,7 @@ public class Main {
     else return null;
   }
  
-  public ArrayList<ProviderQuotes> getQuotes(Quote quote){
+  public ArrayList<ProviderQuotes> getQuotes(Quote quote,Boolean recursedCall){
       ArrayList<ProviderQuotes> pQuotes = new ArrayList<ProviderQuotes>();
       
 
@@ -48,7 +46,7 @@ public class Main {
               if((quote.getPickA()).isNearTo(provider.getAdd())) {	//check if customer's pickup address is in the same area as provider
                   bikes = validBikes(quote, provider);
               }
-              if ((bikes != null) && (bikes.size() > 0)) { //checks if the provider will have available bikes given the criteria
+              if ((bikes.size() > 0)) { //checks if the provider will have available bikes given the criteria
                   ProviderQuotes pq  = new ProviderQuotes(quote,provider,null,bikes); //initializes provider quotes with second provider as NULL
                   pQuotes.add(pq);
               }
@@ -63,7 +61,7 @@ public class Main {
             		  && (quote.getRetA().isNearTo(prov2.getAdd()))) { //Checks if the provider addresses match pickup and return locations
 
                   bikes = validBikes(quote, prov1);
-                  if ((bikes != null) &&(bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
+                  if ((bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov1,prov2,bikes);
                       pQuotes.add(pq);
                   }
@@ -72,7 +70,7 @@ public class Main {
             		  && (quote.getRetA().isNearTo(prov1.getAdd()))) { //Checks if the provider addresses match pickup and return locations
                   
             	  bikes = validBikes(quote, prov2);
-                  if ((bikes != null) && (bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
+                  if ((bikes.size() > 0)) {	//checks if the provider will have available bikes given the criteria
                       ProviderQuotes pq  = new ProviderQuotes(quote,prov2,prov1,bikes);
                       pQuotes.add(pq);
                   }
@@ -80,8 +78,7 @@ public class Main {
 
           }
       }
-      if ((pQuotes.size() == 0) && (getQuotesRecursed == false)){ //checks if no provider quotes were found and if the function has not already recursively been called
-        getQuotesRecursed = true;
+      if ((pQuotes.size() == 0) && (recursedCall == false)){ //checks if no provider quotes were found and if the function has not already recursively been called
         System.out.println("Sorry there were no available quotes for your given search criteria.\n");
 
         LocalDate startDate = quote.getDateRange().getStart();
@@ -91,17 +88,16 @@ public class Main {
         for (int a = 1; a < 4; a++) {	//loops through to find provider quotes for same duration within 3 days before the start date or 3 days after the end date
           dateRange = new DateRange(startDate.plusDays(-a), endDate.plusDays(-a+days));
           quote.setDateRange(dateRange);
-          pQuotes.addAll(getQuotes(quote));
+          pQuotes.addAll(getQuotes(quote, true));
 
           dateRange = new DateRange(endDate.plusDays(a-days), startDate.plusDays(a));
           quote.setDateRange(dateRange);
-          pQuotes.addAll(getQuotes(quote));
+          pQuotes.addAll(getQuotes(quote, true));
         }
         if (pQuotes.size() > 0) {
           System.out.println("Here are available quotes within 3 days before the start or after the end of the date range:.\n");
         }
       }
-      getQuotesRecursed = false;
       return pQuotes;
   }
 

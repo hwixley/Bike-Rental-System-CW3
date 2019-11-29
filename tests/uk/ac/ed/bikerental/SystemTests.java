@@ -145,10 +145,10 @@ public class SystemTests {
 
         //getQuotes function output
         Quote quote1 = new Quote(c1, bikes, d1, loc1, loc1);
-        ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1);
+        ArrayList<ProviderQuotes> getQs = mainSystem.getQuotes(quote1, false);
 
         for (ProviderQuotes retQs: getQs) { //getQuotes printing
-          //System.out.printf("Quote 1 - %s\n", retQs.toString());
+         System.out.printf("Quote 1 - %s\n", retQs.toString());
         }
 
         //testing getQuotes function output for same pickup and return address, with 1 road and 1 mountain bike
@@ -179,7 +179,7 @@ public class SystemTests {
        
         Quote quote2 = new Quote(c1, bikes, d1, loc2, loc3);
 
-        ArrayList<ProviderQuotes> getQs2 = mainSystem.getQuotes(quote2);
+        ArrayList<ProviderQuotes> getQs2 = mainSystem.getQuotes(quote2, false);
 
         for (ProviderQuotes retQs: getQs2) { //getQuotes printing
            System.out.printf("Quote 2 - %s\n", retQs.toString());
