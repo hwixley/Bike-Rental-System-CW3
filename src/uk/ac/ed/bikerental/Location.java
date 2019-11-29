@@ -10,8 +10,10 @@ public class Location {
         this.address = address;
     }
     
-    
-    //compares first 2 characters in Post Codes for equality
+    /*
+       Compares first 2 characters in Post Codes for equality
+       @return true if the substrings are equal
+    */
     public boolean isNearTo(Location other) {
         String postA = postcode.substring(0,2);
         String locationB = other.getPostcode();

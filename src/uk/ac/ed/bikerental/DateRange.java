@@ -34,7 +34,10 @@ public class DateRange {
       return "Start: " + start.toString() + "\nEnd: " + end.toString();
     }
     
-    //method compares whether 2 bookings overlap, this method will be inside a loop
+    /*
+     * Method compares whether 2 bookings overlap, this method will be inside another loop
+     * If a daterange returns true on every iteration of overlaps the given bikes are considered available for that daterange
+     */
     public Boolean overlaps(DateRange other) {
 
         LocalDate compareStart = other.getStart();
