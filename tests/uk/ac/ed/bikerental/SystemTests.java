@@ -52,30 +52,30 @@ public class SystemTests {
     BikeType mountain = new BikeType("Mountain", value3);
 
     //Initialising Bikes For Provider 1
-    Bike bk1p1 = new Bike(hybrid, rentP1, 0);
-    Bike bk2p1 = new Bike(hybrid, rentP1, 0);
-    Bike bk3p1 = new Bike(hybrid, rentP1, 0);
-    Bike bk4p1 = new Bike(hybrid, rentP1, 0);
-    Bike bk5p1 = new Bike(road, rentP2, 0);
-    Bike bk6p1 = new Bike(road, rentP2, 0);
-    Bike bk7p1 = new Bike(mountain, rentP3, 0);
-    Bike bk8p1 = new Bike(mountain, rentP3, 0);
+    Bike bk1p1 = new Bike(prov1, hybrid, rentP1);
+    Bike bk2p1 = new Bike(prov1, hybrid, rentP1);
+    Bike bk3p1 = new Bike(prov1, hybrid, rentP1);
+    Bike bk4p1 = new Bike(prov1, hybrid, rentP1);
+    Bike bk5p1 = new Bike(prov1, road, rentP2);
+    Bike bk6p1 = new Bike(prov1, road, rentP2);
+    Bike bk7p1 = new Bike(prov1, mountain, rentP3);
+    Bike bk8p1 = new Bike(prov1, mountain, rentP3);
 
     //Initialising Bikes For Provider 2
-    Bike bk1p2 = new Bike(hybrid, rentP2, 0);
-    Bike bk2p2 = new Bike(hybrid, rentP2, 0);
-    Bike bk3p2 = new Bike(road, rentP3, 0);
-    Bike bk4p2 = new Bike(road, rentP3, 0);
+    Bike bk1p2 = new Bike(prov2, hybrid, rentP2);
+    Bike bk2p2 = new Bike(prov2, hybrid, rentP2);
+    Bike bk3p2 = new Bike(prov2, road, rentP3);
+    Bike bk4p2 = new Bike(prov2, road, rentP3);
 
     //Initialising Bikes For Provider 3
-    Bike bk1p3 = new Bike(road, rentP1, 0);
-    Bike bk2p3 = new Bike(road, rentP1, 0);
-    Bike bk3p3 = new Bike(road, rentP1, 0);
-    Bike bk4p3 = new Bike(road, rentP1, 0);
-    Bike bk5p3 = new Bike(mountain, rentP3, 0);
-    Bike bk6p3 = new Bike(mountain, rentP3, 0);
-    Bike bk7p3 = new Bike(mountain, rentP3, 0);
-    Bike bk8p3 = new Bike(mountain, rentP3, 0);
+    Bike bk1p3 = new Bike(prov3, road, rentP1);
+    Bike bk2p3 = new Bike(prov3, road, rentP1);
+    Bike bk3p3 = new Bike(prov3, road, rentP1);
+    Bike bk4p3 = new Bike(prov3, road, rentP1);
+    Bike bk5p3 = new Bike(prov3, mountain, rentP3);
+    Bike bk6p3 = new Bike(prov3, mountain, rentP3);
+    Bike bk7p3 = new Bike(prov3, mountain, rentP3);
+    Bike bk8p3 = new Bike(prov3, mountain, rentP3);
 
     //Partnerships
     Partnership ps1 = new Partnership(prov1, prov2);
